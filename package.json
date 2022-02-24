@@ -1,0 +1,26 @@
+{
+  "name": "@republik/tts",
+  "type": "module",
+  "engines": {
+    "node": "^14.4.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.52.0",
+    "@aws-sdk/s3-request-presigner": "^3.52.0",
+    "bluebird": "^3.7.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "microsoft-cognitiveservices-speech-sdk": "^1.20.0",
+    "node-fetch": "^3.2.0",
+    "node-id3": "^0.2.3",
+    "transloadit": "^3.0.2"
+  },
+  "devDependencies": {
+    "localtunnel": "^2.0.2",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "DEBUG=* nodemon index.js"
+  }
+}
