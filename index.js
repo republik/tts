@@ -27,5 +27,8 @@ app.post(
   },
 )
 
+app.get('/', (req, res) => res.status(200).json({ ok: true }))
+app.use((req, res) => res.status(404).json({ ok: false }))
+
 app.listen(PORT)
 console.log(`Running on port ${PORT}`)

@@ -8,6 +8,7 @@ xx
 
 - [ ] Lexikon
 - [ ] Substitution
-- [ ] signing intake
 - [ ] package License
-- [ ] catch all route
+- [ ] error handling, notify on error
+- [x] catch all route
+- [x] signing intake

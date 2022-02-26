@@ -8,6 +8,7 @@
     "@aws-sdk/client-s3": "^3.53.0",
     "@aws-sdk/s3-request-presigner": "^3.53.0",
     "bluebird": "^3.7.2",
+    "dayjs": "^1.10.7",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "microsoft-cognitiveservices-speech-sdk": "^1.20.0",
