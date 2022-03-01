@@ -1,10 +1,12 @@
 #!/usr/bin/env node
+import 'dotenv/config'
 import fetch from 'node-fetch'
 import _debug from 'debug'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
 import { parse } from '../lib/speakables.js'
+import { createRender } from '../lib/synthesize.js'
 import { ScriptError } from '../lib/utils.js'
 
 const { argv } = yargs(hideBin(process.argv))
@@ -12,7 +14,7 @@ const { argv } = yargs(hideBin(process.argv))
   .option('api-url', { default: 'http://localhost:5010/graphql' })
 
 const run = async () => {
-  const debug = _debug('parseDocumentUrl')
+  const debug = _debug('renderDocumentUrl')
 
   const response = await fetch(argv.apiUrl, {
     method: 'POST',
@@ -60,7 +62,8 @@ const run = async () => {
     })
   }
 
-  const speakables = await parse(response.data.document.content)
+  const render = createRender()
+  const speakables = await parse(response.data.document.content).then(render)
 
   console.log(speakables)
 }
