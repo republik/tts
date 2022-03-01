@@ -5,6 +5,7 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
 import { parse } from '../lib/speakables.js'
+import { ScriptError } from '../lib/utils.js'
 
 const { argv } = yargs(hideBin(process.argv))
   .option('path', { require: true })
@@ -27,27 +28,39 @@ const run = async () => {
     .then((res) => {
       if (!res.ok) {
         debug('response not ok: %s', res.statusText)
-        return false
+        throw new ScriptError('response not ok', {
+          status: res.status,
+          statusText: res.statusText,
+          path: argv.path,
+          apiUrl: argv.apiUrl,
+        })
       }
 
       return res.json()
     })
     .catch((e) => {
+      if (e.name === 'ScriptError') {
+        throw e
+      }
+
       debug('failed to fetch %s: %s', argv.apiUrl, e.message)
+      throw new ScriptError(e.message, {
+        path: argv.path,
+        apiUrl: argv.apiUrl,
+      })
     })
 
   if (!response.data?.document?.content) {
-    debug(
-      'data.document.content in response missing on path "%s": %o',
-      argv.path,
-      response.data,
-    )
-    return
+    debug('data.document.content missing on "%s": %o', argv.path, response.data)
+    throw new ScriptError('data.document.content missing', {
+      data: !!response.data,
+      document: !!response.data.document,
+      path: argv.path,
+      apiUrl: argv.apiUrl,
+    })
   }
 
-  await parse(response.data.document.content).catch((e) => {
-    debug('parsing failed: %s', e.message)
-  })
+  await parse(response.data.document.content)
 }
 
-run()
+run().catch(console.error)

@@ -11,15 +11,16 @@ const ssml = `
 </voice>
 `
 
-const run = async () => {
-  const { audioData } = await toSpeech(ssml)
+const run = async () =>
+  toSpeech(ssml)
+    .then(async ({ audioData }) => {
+      console.log(ssml, { audioData })
 
-  console.log(ssml, { audioData })
-
-  await fs.writeFile(
-    `./local/ssmlToSpeech-${new Date().getTime()}.mp3`,
-    Buffer.from(audioData),
-  )
-}
+      await fs.writeFile(
+        `./local/ssmlToSpeech-${new Date().getTime()}.mp3`,
+        Buffer.from(audioData),
+      )
+    })
+    .catch(console.error)
 
 run()
