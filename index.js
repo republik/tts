@@ -1,18 +1,19 @@
 import 'dotenv/config'
 import express from 'express'
 
+import { add } from './lib/queue.js'
 import { produce, publish } from './lib/pipelines.js'
 
 const { PORT = 5030 } = process.env
 
 const app = express()
 
-app.post('/intake/document', express.json(), async (req, res) => {
+app.post('/intake/document', express.json(), (req, res) => {
   const { body } = req
 
   res.status(200).json({ ok: true })
 
-  await produce(body)
+  add(() => produce(body))
 })
 
 app.post(
