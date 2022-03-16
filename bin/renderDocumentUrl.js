@@ -13,7 +13,7 @@ import { ScriptError } from '../lib/utils.js'
 const { argv } = yargs(hideBin(process.argv))
   .option('path', { require: true })
   .option('api-url', { default: 'http://localhost:5010/graphql' })
-  .option('substituion-url', {
+  .option('substitution-url', {
     default: 'http://localhost:5010/publikator/syntheticReadAloud/substitution',
   })
 
@@ -66,7 +66,7 @@ const run = async () => {
     })
   }
 
-  const substitutions = await getSubstitutions(argv.substituionUrl)
+  const substitutions = await getSubstitutions(argv.substitutionUrl)
 
   const render = createRender({ substitutions })
   const speakables = await parse(response.data.document.content).then(render)
