@@ -18,7 +18,7 @@ app.post('/intake/document', express.json(), (req, res) => {
 
 app.post(
   '/webhook/transloadit',
-  express.urlencoded({ extended: true }),
+  express.urlencoded({ limit: '1mb' }),
   async (req, res) => {
     const { body } = req
 
