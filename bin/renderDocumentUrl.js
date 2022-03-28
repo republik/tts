@@ -71,7 +71,7 @@ const run = async () => {
   const render = createRender({ substitutions })
   const speakables = await parse(response.data.document.content).then(render)
 
-  console.log(speakables)
+  console.log(JSON.stringify(speakables, null, 2))
 }
 
 run().catch(console.error)
