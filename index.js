@@ -8,7 +8,9 @@ const { PORT = 5030 } = process.env
 
 const app = express()
 
-app.post('/intake/document', express.json(), (req, res) => {
+app.post('/intake/document', express.json({
+  limit: '1mb'
+}), (req, res) => {
   const { body } = req
 
   res.status(200).json({ ok: true })
