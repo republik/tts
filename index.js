@@ -8,9 +8,8 @@ const { PORT = 5030 } = process.env
 
 const app = express()
 
-app.post('/intake/document', express.json({
-  limit: '1mb'
-}), (req, res) => {
+// Accepts a document and produces a read aloud version of it
+app.post('/intake/document', express.json({ limit: '1mb' }), (req, res) => {
   const { body } = req
 
   res.status(200).json({ ok: true })
@@ -18,6 +17,7 @@ app.post('/intake/document', express.json({
   add(() => produce(body))
 })
 
+// Accepts a webhook from TransloadIt, signaling a finished pipeline
 app.post(
   '/webhook/transloadit',
   express.urlencoded({ limit: '1mb' }),
