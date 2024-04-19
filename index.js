@@ -12,7 +12,7 @@ const { PORT = 5030 } = process.env
 const app = express()
 
 Sentry.init({
-  dsn: 'https://339907934a8fd86af5632cd534a24e8e@o4505721260212224.ingest.sentry.io/4505958164135936',
+  dsn: 'https://0c41614bbb99faa215d019b69dc428da@o4507101684105216.ingest.de.sentry.io/4507113315106896',
   integrations: [
     // enable HTTP calls tracing
     new Sentry.Integrations.Http({ tracing: true }),
