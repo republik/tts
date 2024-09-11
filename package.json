@@ -16,7 +16,6 @@
     "microsoft-cognitiveservices-speech-sdk": "^1.29.0",
     "node-fetch": "^3.3.1",
     "node-id3": "^0.2.6",
-    "transloadit": "^3.0.2",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -40,6 +39,6 @@
   "scripts": {
     "start": "node index.js",
     "dev": "DEBUG=* nodemon index.js",
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   }
 }
