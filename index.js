@@ -44,7 +44,7 @@ app.post('/intake/document', express.json({ limit: '1.5mb' }), (req, res) => {
 // Accepts a webhook from Huebsch, signaling a finished pipeline
 app.post(
   '/webhook/huebsch/:documentId',
-  express.urlencoded({ limit: '1.5mb' }),
+  express.json({ limit: '1.5mb' }),
   async (req, res) => {
     const {
       body,
