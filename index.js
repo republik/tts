@@ -43,17 +43,17 @@ app.post('/intake/document', express.json({ limit: '1.5mb' }), (req, res) => {
 
 // Accepts a webhook from Huebsch, signaling a finished pipeline
 app.post(
-  '/webhook/huebsch/:documentId',
+  '/webhook/huebsch/:derivativeId/:publikatorHookUrl',
   express.json({ limit: '1.5mb' }),
   async (req, res) => {
     const {
       body,
-      params: { documentId },
+      params: { derivativeId, publikatorHookUrl },
     } = req
 
     res.sendStatus(204)
 
-    await publish(documentId, body)
+    await publish(derivativeId, publikatorHookUrl, body)
   },
 )
 
