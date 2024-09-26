@@ -41,16 +41,19 @@ app.post('/intake/document', express.json({ limit: '1.5mb' }), (req, res) => {
   add(() => produce(body))
 })
 
-// Accepts a webhook from TransloadIt, signaling a finished pipeline
+// Accepts a webhook from Huebsch, signaling a finished pipeline
 app.post(
-  '/webhook/transloadit',
-  express.urlencoded({ limit: '1.5mb' }),
+  '/webhook/huebsch/:derivativeId',
+  express.json({ limit: '1.5mb' }),
   async (req, res) => {
-    const { body } = req
+    const {
+      body,
+      params: { derivativeId },
+    } = req
 
     res.sendStatus(204)
 
-    await publish(body)
+    await publish(derivativeId, body)
   },
 )
 

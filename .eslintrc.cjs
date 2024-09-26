@@ -12,4 +12,12 @@ module.exports = {
     camelcase: 'off',
     'prettier/prettier': 'error',
   },
+  overrides: [
+    {
+      files: ['**/*.jest.{js,ts}', '**/*.test.{js,ts}'],
+      env: {
+        jest: true,
+      },
+    }
+  ]
 }

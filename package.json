@@ -16,7 +16,6 @@
     "microsoft-cognitiveservices-speech-sdk": "^1.29.0",
     "node-fetch": "^3.3.1",
     "node-id3": "^0.2.6",
-    "transloadit": "^3.0.2",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -30,6 +29,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^8.0.3",
+    "jest": "^29.7.0",
     "lint-staged": "^13.2.2",
     "localtunnel": "^2.0.2",
     "nodemon": "^2.0.22",
@@ -38,6 +38,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "DEBUG=* nodemon index.js"
+    "dev": "DEBUG=* nodemon index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   }
 }
